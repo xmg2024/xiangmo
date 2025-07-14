@@ -107,7 +107,9 @@ keyAlias=
 keyPassword=
 ```
 
-运行项目即可。
+运行项目:
+./gradlew assembleDebug
+./gradlew assembleRelease
 
 ## 参考数据源：
 

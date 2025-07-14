@@ -17,7 +17,9 @@ val releaseTime = Date().time
 
 val keystorePropertiesFile: File = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
-keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+if (keystorePropertiesFile.exists() && keystorePropertiesFile.length() > 0) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+}
 
 android {
     namespace = "com.hefengbao.jingmo"
@@ -56,11 +58,16 @@ android {
 
     }
     signingConfigs {
-        create("release") {
-            keyAlias = keystoreProperties["keyAlias"] as String
-            keyPassword = keystoreProperties["keyPassword"] as String
-            storeFile = file(keystoreProperties["storeFile"] as String)
-            storePassword = keystoreProperties["storePassword"] as String
+        if (keystoreProperties.containsKey("keyAlias") && 
+            keystoreProperties.containsKey("keyPassword") && 
+            keystoreProperties.containsKey("storeFile") && 
+            keystoreProperties.containsKey("storePassword")) {
+            create("release") {
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
+                storeFile = file(keystoreProperties["storeFile"] as String)
+                storePassword = keystoreProperties["storePassword"] as String
+            }
         }
     }
 
@@ -75,7 +82,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("release")
+            if (keystoreProperties.containsKey("keyAlias") && 
+                keystoreProperties.containsKey("keyPassword") && 
+                keystoreProperties.containsKey("storeFile") && 
+                keystoreProperties.containsKey("storePassword")) {
+                signingConfig = signingConfigs.getByName("release")
+            }
             applicationVariants.all {
                 val buildType = this.buildType.name
                 outputs.all {
