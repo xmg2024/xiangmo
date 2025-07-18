@@ -1,0 +1,281 @@
+/*
+ * This file is part of the 湘墨（xiangmo）APP.
+ *
+ * (c) xmg2024 <ml112265@126.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+package com.xmg2024.xiangmo.ui.screen.classicalliterature.classicpoem
+
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.draggable
+import androidx.compose.foundation.gestures.rememberDraggableState
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.filled.BookmarkBorder
+import androidx.compose.material.icons.outlined.Menu
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.SearchBar
+import androidx.compose.material3.SearchBarDefaults
+import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.xmg2024.xiangmo.data.database.entity.classicalliterature.ClassicPoemCollectionEntity
+import com.xmg2024.xiangmo.data.database.entity.classicalliterature.ClassicPoemEntity
+import com.xmg2024.xiangmo.data.model.IdTitle
+import com.xmg2024.xiangmo.ui.component.SimpleScaffold
+import com.xmg2024.xiangmo.ui.screen.classicalliterature.classicpoem.components.ClassicPoemPanel
+import kotlinx.coroutines.launch
+import kotlin.math.abs
+
+@Composable
+fun ClassicPoemReadRoute(
+    viewModel: ClassicPoemReadViewModel = hiltViewModel(),
+    onBackClick: () -> Unit
+) {
+    val classicPoemEntity by viewModel.classicPoemEntity.collectAsState()
+    val prevId by viewModel.prevId.collectAsState()
+    val nextId by viewModel.nextId.collectAsState()
+    val classicPoemCollectionEntity by viewModel.classicPoemCollectionEntity.collectAsState()
+    val idTitles = viewModel.idTitles.collectAsLazyPagingItems()
+
+    ClassicPoemReadScreen(
+        onBackClick = onBackClick,
+        setCurrentId = { viewModel.setCurrentId(it) },
+        setCollect = { viewModel.collect(it) },
+        setUncollect = { viewModel.uncollect(it) },
+        setLastReadId = { viewModel.setLastReadId(it) },
+        classicPoemEntity = classicPoemEntity,
+        prevId = prevId,
+        nextId = nextId,
+        classicPoemCollectionEntity = classicPoemCollectionEntity,
+        idTitles = idTitles,
+        setQuery = viewModel::setQuery
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ClassicPoemReadScreen(
+    modifier: Modifier = Modifier,
+    onBackClick: () -> Unit,
+    setCurrentId: (Int) -> Unit,
+    setCollect: (Int) -> Unit,
+    setUncollect: (Int) -> Unit,
+    setLastReadId: (Int) -> Unit,
+    classicPoemEntity: ClassicPoemEntity?,
+    prevId: Int?,
+    nextId: Int?,
+    classicPoemCollectionEntity: ClassicPoemCollectionEntity?,
+    idTitles: LazyPagingItems<IdTitle>,
+    setQuery: (String) -> Unit,
+) {
+    val annotationSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    var showAnnotationBottomSheet by remember { mutableStateOf(false) }
+    val translationSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    var showTranslationBottomSheet by remember { mutableStateOf(false) }
+    val poemSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false)
+    var showPoemBottomSheet by remember { mutableStateOf(false) }
+    val state = rememberLazyListState()
+    val scope = rememberCoroutineScope()
+    var showIndexBottomSheet by remember { mutableStateOf(false) }
+    var query by rememberSaveable { mutableStateOf("") }
+
+    classicPoemEntity?.let { entity ->
+        LaunchedEffect(entity) {
+            setLastReadId(entity.id)
+            scope.launch {
+                state.animateScrollToItem(0)
+            }
+        }
+        SimpleScaffold(
+            onBackClick = onBackClick,
+            title = entity.title,
+            actions = {
+                IconButton(
+                    onClick = { showIndexBottomSheet = true }
+                ) {
+                    Icon(imageVector = Icons.Outlined.Menu, contentDescription = "目录")
+                }
+            },
+            bottomBar = {
+                BottomAppBar {
+                    Row(
+                        modifier = modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceAround
+                    ) {
+                        IconButton(
+                            onClick = { prevId?.let(setCurrentId) },
+                            enabled = prevId != null
+                        ) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                                contentDescription = "上一个"
+                            )
+                        }
+                        OutlinedButton(
+                            onClick = {
+                                showAnnotationBottomSheet = true
+                            },
+                            enabled = classicPoemEntity.annotation != null
+                        ) {
+                            Text(text = "注")
+                        }
+                        OutlinedButton(
+                            onClick = {
+                                showTranslationBottomSheet = true
+                            },
+                            enabled = classicPoemEntity.translation != null
+                        ) {
+                            Text(text = "译")
+                        }
+                        OutlinedButton(onClick = { showPoemBottomSheet = true }) {
+                            Text(text = "文")
+                        }
+                        if (classicPoemCollectionEntity == null) {
+                            IconButton(onClick = { setCollect(entity.id) }) {
+                                Icon(
+                                    imageVector = Icons.Default.BookmarkBorder,
+                                    contentDescription = null
+                                )
+                            }
+                        } else {
+                            IconButton(onClick = { setUncollect(entity.id) }) {
+                                Icon(
+                                    imageVector = Icons.Default.Bookmark,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary
+                                )
+                            }
+                        }
+
+                        IconButton(
+                            onClick = { nextId?.let(setCurrentId) },
+                            enabled = nextId != null
+                        ) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Default.ArrowForward,
+                                contentDescription = "下一个"
+                            )
+                        }
+                    }
+                }
+            }
+        ) {
+            Box(
+                modifier = modifier
+                    .fillMaxSize()
+                    .draggable(
+                        state = rememberDraggableState {},
+                        orientation = Orientation.Horizontal,
+                        onDragStarted = {},
+                        onDragStopped = { velocity ->
+                            if (velocity < 0 && abs(velocity) > 500f) {
+                                nextId?.let(setCurrentId)
+                            } else if (velocity > 0 && abs(velocity) > 500f) {
+                                prevId?.let(setCurrentId)
+                            }
+                        }
+                    )
+            ) {
+                ClassicPoemPanel(
+                    entity = entity,
+                    state = state,
+                    showAnnotationBottomSheet = showAnnotationBottomSheet,
+                    annotationSheetState = annotationSheetState,
+                    onAnnotationBottomSheetDismiss = { showAnnotationBottomSheet = false },
+                    showTranslationBottomSheet = showTranslationBottomSheet,
+                    translationSheetState = translationSheetState,
+                    onTranslationBottomSheetDismiss = { showTranslationBottomSheet = false },
+                    showPoemBottomSheet = showPoemBottomSheet,
+                    poemSheetState = poemSheetState,
+                    onPoemBottomSheetDismiss = { showPoemBottomSheet = false }
+                )
+
+                if (showIndexBottomSheet) {
+                    ModalBottomSheet(
+                        onDismissRequest = { showIndexBottomSheet = false },
+                    ) {
+                        LazyColumn {
+                            item {
+                                SearchBar(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 16.dp),
+                                    inputField = {
+                                        SearchBarDefaults.InputField(
+                                            query = query,
+                                            onQueryChange = {
+                                                query = it
+                                                setQuery(it)
+                                            },
+                                            onSearch = {},
+                                            onExpandedChange = {},
+                                            expanded = false
+                                        )
+                                    },
+                                    expanded = false,
+                                    onExpandedChange = {},
+                                    content = {}
+                                )
+                            }
+
+                            items(
+                                count = idTitles.itemCount
+                            ) { index ->
+                                val idTitle = idTitles[index]
+
+                                idTitle?.let {
+                                    Text(
+                                        text = idTitle.title,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .clickable {
+                                                setCurrentId(idTitle.id)
+                                                showIndexBottomSheet = false
+                                            }
+                                            .padding(16.dp, 8.dp)
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

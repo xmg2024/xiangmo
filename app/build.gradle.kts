@@ -22,12 +22,12 @@ keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 
 android {
-    namespace = "com.hefengbao.jingmo"
+    namespace = "com.xmg2024.xiangmo"
     compileSdk = 35
     buildToolsVersion = "35.0.0"
 
     defaultConfig {
-        applicationId = "com.hefengbao.jingmo"
+        applicationId = "com.xmg2024.xiangmo"
         minSdk = 26
         targetSdk = 35
         versionCode = 20
@@ -92,18 +92,18 @@ android {
                 val buildType = this.buildType.name
                 outputs.all {
                     if (this is com.android.build.gradle.internal.api.ApkVariantOutputImpl) {
-                        outputFileName = "jingmo_v${defaultConfig.versionName}_$buildType.apk"
+                        outputFileName = "xiangmo_v${defaultConfig.versionName}_$buildType.apk"
                     }
                 }
             }
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_19
-        targetCompatibility = JavaVersion.VERSION_19
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "19"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true

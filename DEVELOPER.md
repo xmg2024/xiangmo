@@ -48,7 +48,7 @@ Android UI:
 开始于 `MainActivity.kt`，引入 Navigation 导航：
 
 ```kotlin
-import com.hefengbao.jingmo.route.AppNavHost
+import com.xmg2024.xiangmo.route.AppNavHost
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -333,7 +333,7 @@ autoMigrations = [
 class AutoMigration8To9 : AutoMigrationSpec
 ```
 
-`exportSchema = true` 导出数据表结构，保存在 `app/schemas/com.hefengbao.jingmo.data.database.AppDatabase` 
+`exportSchema = true` 导出数据表结构，保存在 `app/schemas/com.xmg2024.xiangmo.data.database.AppDatabase` 
 目录下。
 
 `version`、`autoMigrations`以及`exportSchema = true`协同确保 App 平滑升级，不然会报错，只能卸载后重新安装。
