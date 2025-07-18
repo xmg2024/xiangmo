@@ -1,7 +1,7 @@
 /*
  * This file is part of the 湘墨（jingmo）APP.
  *
- * (c) 贺丰宝（hefengbao） <hefengbao@foxmail.com>
+ * (c) xmg2024 <ml112265@126.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -95,7 +95,7 @@ fun AboutScreen(
                     }
                 }
 
-                Text(text = "❤贺丰宝（hefengbao）设计和编码❤")
+                Text(text = "xmg2024设计和编码❤")
 
                 val desc = """
                 『湘墨』开源的中华文化宝典 APP。献给喜欢中华文字、文学、文化的人。
@@ -104,11 +104,9 @@ fun AboutScreen(
                 
                 源码仓库：
                 
-                https://github.com/hefengbao/jingmo
+                https://github.com/xmg2024/xiangmo
                 
-                https://gitee.com/hefengbao/jingmo
-                
-                关注公众号『NowInLife』获取更新消息。
+                关注公众号『xmg2023』获取更新消息。
                 
                 如果在使用过程中，遇到内容错误，欢迎在公众号留言说明，我们共同改进。
                 
