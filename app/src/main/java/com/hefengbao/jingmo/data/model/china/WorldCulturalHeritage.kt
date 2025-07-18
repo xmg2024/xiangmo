@@ -1,5 +1,5 @@
 /*
- *  This file is part of the 京墨（jingmo）APP.
+ *  This file is part of the 湘墨（jingmo）APP.
  *
  * (c) 贺丰宝（hefengbao） <hefengbao@foxmail.com>
  *
