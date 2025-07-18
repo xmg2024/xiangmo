@@ -55,48 +55,27 @@ Android 8.0 及以上
 
 ## 获取更新消息
 
-1. 经常使用 Github 或 Gitee 的同学，可点个 "Star"。
+1. 经常使用 Github 的同学，可点个 "Star"。
 
-2. 关注微信公众号『NowInLife』或者 B 站『NowInLife』获取最新更新，一般会在公众号发布一篇更新说明，在 B 站发布新功能演示视频。
+2. 关注微信公众号『xmg2023』或者 B 站『码拉松吴向东』获取最新更新，一般会在公众号发布一篇更新说明，在 B 站发布新功能演示视频。
 
 ## 仓库
 
-Github:[https://github.com/hefengbao/jingmo](https://github.com/hefengbao/jingmo)
+Github: [https://github.com/xmg2024/xiangmo](https://github.com/xmg2024/xiangmo)
 
-Gitee:[https://gitee.com/hefengbao/jingmo](https://gitee.com/hefengbao/jingmo)
 
 ## 赞助
 
 <div style=" display: flex;justify-content: space-between;">
-<img src="screenshot/wechatpay.png" style="width: 45%" alt="微信赞赏码">
+<img src="screenshot/wechatpay.jpg" style="width: 45%" alt="微信赞赏码">
 <img src="screenshot/alipay.jpg" style="width: 45%" alt="支付宝赞赏码">
 </div>
-
-| 平台   | 时间         | 用户      | 金额  |
-|------|------------|---------|-----|
-| 微信支付 | 2024.03.10 | zzz     | ￥5  |
-| 微信支付 | 2024.03.10 | 小明同学*   | ￥1  |
-| 微信支付 | 2024.04.28 | 初见      | ￥9  |
-| 微信支付 | 2024.05.10 | 大王叫我来巡山 | ￥9  |
-| 微信支付 | 2024.07.23 | 白鱼炖汤    | ￥19 |
-| 微信支付 | 2024.12.29 | 1235    | ￥9  |
-| 微信支付 | 2024.01.06 | TECH    | ￥5  |
-| 支付宝  | 2024.05.06 | *冉      | ￥5  |
-| 支付宝  | 2024.07.04 | **国     | ￥10 |
-| 支付宝  | 2025.01.21 | **如     | ￥1  |
-| 公众号  | 2024-01-29 | 十里坡剑神   | ￥19 |
-| 公众号  | 2024-02-19 | F       | ￥5  |
-| 公众号  | 2024-03-03 | 七月流火    | ￥9  |
-| 公众号  | 2024-03-15 | 帅蜀黍     | ￥9  |
-| 公众号  | 2024-12-26 | yuebao  | ￥5  |
-| 公众号  | 2025-01-05 | 牧淳      | ￥9  |
-
 感谢各位的支持！！！
 
 ## 运行项目
 
 ```shell
-git clone https://github.com/hefengbao/jingmo.git
+git clone git@github.com:xmg2024/xiangmo.git
 ```
 在项目根目录下新建 `keystore.properties` 文件， 添加的参数
 
@@ -163,8 +142,8 @@ keyPassword=
 
 ~本项目使用的数据位于 `app/src/main/assets` 目录下，有需要的请自取😀~
 
-1.6.0 及之前，本项目使用的数据位于 `app/src/main/assets` 目录下，1.6.1 及以后，放在如下仓库里: `hefengbao/jingmo-data`、`hefengbao/jingmo-data2`、`hefengbao/jingmo-data3`, 具体在 `gh-pages` 分支。
+1.6.0 及之前，本项目使用的数据位于 `app/src/main/assets` 目录下，1.6.1 及以后，放在如下仓库里: `xmg2024/xiangmo-data`、`xmg2024/xiangmo-data2`、`xmg2024/xiangmo-data3`, 具体在 `gh-pages` 分支。
 
 ## Github Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=hefengbao/jingmo&type=Date)](https://star-history.com/#hefengbao/jingmo&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=xmg2024/xiangmo&type=Date)](https://www.star-history.com/#xmg2024/xiangmo&Date)

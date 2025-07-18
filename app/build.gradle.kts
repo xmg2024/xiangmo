@@ -18,7 +18,7 @@ val releaseTime = Date().time
 val keystorePropertiesFile: File = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
 if (keystorePropertiesFile.exists() && keystorePropertiesFile.length() > 0) {
-    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 
 android {
@@ -62,11 +62,11 @@ android {
             keystoreProperties.containsKey("keyPassword") && 
             keystoreProperties.containsKey("storeFile") && 
             keystoreProperties.containsKey("storePassword")) {
-            create("release") {
-                keyAlias = keystoreProperties["keyAlias"] as String
-                keyPassword = keystoreProperties["keyPassword"] as String
-                storeFile = file(keystoreProperties["storeFile"] as String)
-                storePassword = keystoreProperties["storePassword"] as String
+        create("release") {
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
             }
         }
     }
@@ -86,7 +86,7 @@ android {
                 keystoreProperties.containsKey("keyPassword") && 
                 keystoreProperties.containsKey("storeFile") && 
                 keystoreProperties.containsKey("storePassword")) {
-                signingConfig = signingConfigs.getByName("release")
+            signingConfig = signingConfigs.getByName("release")
             }
             applicationVariants.all {
                 val buildType = this.buildType.name
