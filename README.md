@@ -47,20 +47,9 @@ Android 8.0 及以上
 
 1. 经常使用 Github 的同学，可点个 "Star"。
 
-2. 关注微信公众号『xmg2023』或者 B 站『码拉松吴向东』获取最新更新，一般会在公众号发布一篇更新说明，在 B 站发布新功能演示视频。
-
 ## 仓库
 
 Github: [https://github.com/xmg2024/xiangmo](https://github.com/xmg2024/xiangmo)
-
-
-## 赞助
-
-<div style=" display: flex;justify-content: space-between;">
-<img src="screenshot/wechatpay.jpg" style="width: 45%" alt="微信赞赏码">
-<img src="screenshot/alipay.jpg" style="width: 45%" alt="支付宝赞赏码">
-</div>
-感谢各位的支持！！！
 
 ## 运行项目
 
@@ -130,10 +119,5 @@ keyPassword=
 
 [lunar是一个支持阳历、阴历、佛历和道历的日历工具库](https://github.com/6tail/lunar-java)
 
-~本项目使用的数据位于 `app/src/main/assets` 目录下，有需要的请自取😀~
 
 1.6.0 及之前，本项目使用的数据位于 `app/src/main/assets` 目录下，1.6.1 及以后，放在如下仓库里: `xmg2024/xiangmo-data`、`xmg2024/xiangmo-data2`、`xmg2024/xiangmo-data3`, 具体在 `gh-pages` 分支。
-
-## Github Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=xmg2024/xiangmo&type=Date)](https://www.star-history.com/#xmg2024/xiangmo&Date)
