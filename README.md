@@ -1,11 +1,15 @@
 <div align="center">
 <div align="center">
-<img src="./screenshot/logo.png" alt="Logo" height="200">
 </div>
     
 # 湘墨
+    
 
-![](screenshot/v1.14.0.png)
+</div>
+
+## 预览
+
+![](screenshot/1.jpg)
 
 ## 介绍
 
@@ -35,7 +39,7 @@
 19. 中国传统色 161 种；
 20. 中国的世界文化遗产 44 个；
 
-数据来自网络，或有内容错误，欢迎纠错，请在公众号留言。
+数据来自网络，或有内容错误，欢迎纠错。
 
 
 ## 平台支持
@@ -48,12 +52,12 @@ Android 8.0 及以上
 
 ## 仓库
 
-Github: [https://github.com/xmg2024/xiangmo](https://github.com/xmg2024/xiangmo)
+Github:[https://github.com/xmg2024/xiangmo](https://github.com/xmg2024/xiangmo)
 
 ## 运行项目
 
 ```shell
-git clone git@github.com:xmg2024/xiangmo.git
+git clone https://github.com/xmg2024/xiangmo.git
 ```
 在项目根目录下新建 `keystore.properties` 文件， 添加的参数
 
@@ -64,9 +68,7 @@ keyAlias=
 keyPassword=
 ```
 
-运行项目:
-./gradlew assembleDebug
-./gradlew assembleRelease
+运行项目即可。
 
 ## 参考数据源：
 
@@ -117,6 +119,3 @@ keyPassword=
 [https://github.com/dengxiuqi/ChineseLyrics](https://github.com/dengxiuqi/ChineseLyrics)
 
 [lunar是一个支持阳历、阴历、佛历和道历的日历工具库](https://github.com/6tail/lunar-java)
-
-
-1.6.0 及之前，本项目使用的数据位于 `app/src/main/assets` 目录下，1.6.1 及以后，放在如下仓库里: `xmg2024/xiangmo-data`、`xmg2024/xiangmo-data2`、`xmg2024/xiangmo-data3`, 具体在 `gh-pages` 分支。
