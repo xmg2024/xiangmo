@@ -4,16 +4,6 @@
 </div>
     
 # 湘墨
-    
-<div>
-<img alt="GitHub Release" src="https://img.shields.io/github/v/release/xmg2024/xiangmo?display_name=release&style=for-the-badge">
-<img alt="GitHub Downloads (all assets, all releases)" src="https://img.shields.io/github/downloads/xmg2024/xiangmo/total?style=for-the-badge">
-<img alt="License" src="https://img.shields.io/github/license/xmg2024/xiangmo?style=for-the-badge">
-</div>
-
-</div>
-
-## 预览
 
 ![](screenshot/v1.14.0.png)
 
