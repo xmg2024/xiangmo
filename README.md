@@ -10,10 +10,12 @@
 ## 预览
 
 <p align="center">
-  <img src="screenshot/1.jpg" width="200"/>
-  <img src="screenshot/2.jpg" width="200"/>
-  <img src="screenshot/3.jpg" width="200"/>
-  <img src="screenshot/4.jpg" width="200"/>
+  <img src="screenshot/1.jpg" width="50%"/>
+  <img src="screenshot/2.jpg" width="50%"/>
+</p>
+<p align="center">
+  <img src="screenshot/3.jpg" width="50%"/>
+  <img src="screenshot/4.jpg" width="50%"/>
 </p>
 
 ## 介绍
